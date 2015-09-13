@@ -92,6 +92,7 @@ class AuthMechanism implements \JsonSerializable {
 	 */
 	public function jsonSerialize() {
 		$data = $this->jsonSerializeDefinition();
+		$data['identifier'] = $this->getIdentifier();
 		$data['scheme'] = $this->getScheme();
 
 		return $data;
