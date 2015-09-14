@@ -66,7 +66,7 @@ class UserGlobalStoragesController extends StoragesController {
 	 * @NoAdminRequired
 	 */
 	public function index() {
-		$storages = $this->service->getAllStorages();
+		$storages = $this->service->getUniqueStorages();
 
 		// remove configuration data, this must be kept private
 		foreach ($storages as $storage) {
