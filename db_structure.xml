@@ -498,6 +498,61 @@
 	<table>
 
 		<!--
+		Stores which groups have which groups as childs in an n:m relationship.
+		 - Maps group id (gid) to a set of groups (child_gid)
+		 - Maps group id (child_gid) to a set of groups (gid) (but without index)
+		-->
+		<name>*dbprefix*group_group</name>
+
+		<declaration>
+
+			<!-- Foreign Key groups::gid -->
+			<field>
+				<name>gid</name>
+				<type>text</type>
+				<default></default>
+				<notnull>true</notnull>
+				<length>64</length>
+			</field>
+
+			<!-- Foreign Key groups::child_gid -->
+			<field>
+				<name>child_gid</name>
+				<type>text</type>
+				<default></default>
+				<notnull>true</notnull>
+				<length>64</length>
+			</field>
+
+			<index>
+				<name>gu_gid_child_gid_index</name>
+				<primary>true</primary>
+				<unique>true</unique>
+				<field>
+					<name>gid</name>
+					<sorting>ascending</sorting>
+				</field>
+				<field>
+					<name>child_gid</name>
+					<sorting>ascending</sorting>
+				</field>
+			</index>
+
+			<index>
+				<name>gu_child_gid_index</name>
+				<field>
+					<name>child_gid</name>
+					<sorting>ascending</sorting>
+				</field>
+			</index>
+
+		</declaration>
+
+	</table>
+
+	<table>
+
+		<!--
 		Stores which groups have which users as admins in an n:m relationship.
 		 - Maps group id (gid) to a set of users (uid)
 		 - Maps user id (uid) to a set of groups (gid)
