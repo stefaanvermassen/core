@@ -8,7 +8,17 @@
 	<li id="newgroup-form" style="display: none">
 		<form>
 			<input type="text" id="newgroupname" placeholder="<?php p($l->t('Group')); ?>..." />
-			<div class="multiselect button" style="min-width: 100px; height: auto; padding-right: 32px;"><span>Parent</span><span class="icon-triangle-s"></span></div>
+			
+			<select
+			class="groupsselect" id="newgroupgroups" data-placeholder="groups"
+			title="<?php p($l->t('Groups'))?>" multiple="multiple">
+			<?php foreach($_["adminGroup"] as $adminGroup): ?>
+				<option value="<?php p($adminGroup['name']);?>"><?php p($adminGroup['name']); ?></option>
+			<?php endforeach; ?>
+			<?php foreach($_["groups"] as $group): ?>
+				<option value="<?php p($group['name']);?>"><?php p($group['name']);?></option>
+			<?php endforeach;?>
+		</select>
 			<input type="submit" class="button icon-add svg" value="" />
 		</form>
 	</li>

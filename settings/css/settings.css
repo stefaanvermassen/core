@@ -85,6 +85,15 @@ table.nostyle td { padding: 0.2em 0; }
 	width: 32px;
 }
 
+#newgroup-form .multiselect {
+	position: absolute;
+	right: 0;
+	top: 3px;
+	margin-right: 32px;
+	min-width: 70px !important;
+	height: auto;
+}
+
 .ie8 #newgroup-form .icon-add {
 	height: 30px;
 }
