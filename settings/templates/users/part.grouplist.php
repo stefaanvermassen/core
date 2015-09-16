@@ -8,6 +8,7 @@
 	<li id="newgroup-form" style="display: none">
 		<form>
 			<input type="text" id="newgroupname" placeholder="<?php p($l->t('Group')); ?>..." />
+			<div class="multiselect button" style="min-width: 100px; height: auto; padding-right: 32px;"><span>Parent</span><span class="icon-triangle-s"></span></div>
 			<input type="submit" class="button icon-add svg" value="" />
 		</form>
 	</li>
