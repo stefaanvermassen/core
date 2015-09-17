@@ -504,6 +504,8 @@ var UserList = {
 			onuncheck: checkHandler,
 			minWidth: 100
 		});
+		
+
 	},
 
 	applySubadminSelect: function (element) {

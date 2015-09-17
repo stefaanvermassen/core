@@ -337,7 +337,7 @@ $(document).ready( function () {
 	$('#newgroup-form form').submit(function (event) {
 		event.preventDefault();
 		if(GroupList.isGroupNameValid($('#newgroupname').val())) {
-			GroupList.createGroup($('#newgroupname').val(), 1);
+			GroupList.createGroup($('#newgroupname').val(), $('#newgroupgroups').val());
 		}
 	});
 

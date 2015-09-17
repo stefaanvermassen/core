@@ -10,8 +10,8 @@
 			<input type="text" id="newgroupname" placeholder="<?php p($l->t('Group')); ?>..." />
 			
 			<select
-			class="groupsselect" id="newgroupgroups" data-placeholder="groups"
-			title="<?php p($l->t('Groups'))?>" multiple="multiple">
+			class="" id="newgroupgroups" data-placeholder="groups" style="position: absolute;right: 0;top: 3px;margin-right: 32px;min-width: 70px !important;"
+			title="<?php p($l->t('Groups'))?>" >
 			<?php foreach($_["adminGroup"] as $adminGroup): ?>
 				<option value="<?php p($adminGroup['name']);?>"><?php p($adminGroup['name']); ?></option>
 			<?php endforeach; ?>
