@@ -58,7 +58,7 @@ class OC_Group_Database extends OC_Group_Backend {
 	 * Tries to create a new group. If the group name already exists, false will
 	 * be returned.
 	 */
-	public function createGroup( $gid ) {
+	public function createGroup( $gid, $parent_gid=-1 ) {
 		// Check for existence
 		$stmt = OC_DB::prepare( "SELECT `gid` FROM `*PREFIX*groups` WHERE `gid` = ?" );
 		$result = $stmt->execute( array( $gid ));
@@ -71,9 +71,32 @@ class OC_Group_Database extends OC_Group_Backend {
 			// Add group and exit
 			$stmt = OC_DB::prepare( "INSERT INTO `*PREFIX*groups` ( `gid` ) VALUES( ? )" );
 			$result = $stmt->execute( array( $gid ));
-
+			if( $parent_id != -1 && $result){
+				$stmt = OC_DB::prepare( "INSERT INTO `*PREFIX*group_group` ( `gid`,`child_gid` ) VALUES( ?,? )" );
+				$result = $stmt->execute( array( $parent_gid, $gid ));
+			}
+			
 			return $result ? true : false;
 		}
+	}
+
+	/**
+	 * Try to create a new child group
+	 * @param string $gid parent group
+	 * @param string $child_gid child group
+	 * @return bool
+	 *
+	 * Tries to create a new child group. If the group name already exists, false will
+	 * be returned.
+	 */
+	public function createChildGroup( $gid, $child_gid ) {
+
+		// Add group to group and exit
+		$stmt = OC_DB::prepare( "INSERT INTO `*PREFIX*group_group` ( `gid`,`child_gid` ) VALUES( ?,? )" );
+		$result = $stmt->execute( array( $gid, $child_gid ));
+
+		return $result ? true : false;
+		
 	}
 
 	/**

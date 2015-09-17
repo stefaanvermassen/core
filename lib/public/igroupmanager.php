@@ -81,7 +81,9 @@ interface IGroupManager {
 	 * @return \OCP\IGroup
 	 * @since 8.0.0
 	 */
-	public function createGroup($gid);
+	public function createGroup($gid, $parent_gid=-1);
+
+
 
 	/**
 	 * @param string $search

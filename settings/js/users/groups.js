@@ -117,11 +117,12 @@ GroupList = {
 		}
 	},
 
-	createGroup: function (groupname) {
+	createGroup: function (groupname, parentgroupname) {
 		$.post(
 			OC.generateUrl('/settings/users/groups'),
 			{
-				id: groupname
+				id: groupname,
+				parent_id: parentgroupname
 			},
 			function (result) {
 				if (result.groupname) {
@@ -336,7 +337,7 @@ $(document).ready( function () {
 	$('#newgroup-form form').submit(function (event) {
 		event.preventDefault();
 		if(GroupList.isGroupNameValid($('#newgroupname').val())) {
-			GroupList.createGroup($('#newgroupname').val());
+			GroupList.createGroup($('#newgroupname').val(), 1);
 		}
 	});
 

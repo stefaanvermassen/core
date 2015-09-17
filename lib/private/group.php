@@ -90,8 +90,8 @@ class OC_Group {
 	 * be returned. Basic checking of Group name
 	 * @deprecated Use \OC::$server->getGroupManager()->createGroup() instead
 	 */
-	public static function createGroup($gid) {
-		if (self::getManager()->createGroup($gid)) {
+	public static function createGroup($gid, $parent_gid=-1) {
+		if (self::getManager()->createGroup($gid, $parent_gid)) {
 			return true;
 		} else {
 			return false;

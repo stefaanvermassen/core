@@ -93,7 +93,7 @@ class GroupsController extends Controller {
 	 * @param string $id
 	 * @return DataResponse
 	 */
-	public function create($id) {
+	public function create($id, $parent_id=-1) {
 		if($this->groupManager->groupExists($id)) {
 			return new DataResponse(
 				array(
@@ -102,7 +102,7 @@ class GroupsController extends Controller {
 				Http::STATUS_CONFLICT
 			);
 		}
-		if($this->groupManager->createGroup($id)) {
+		if($this->groupManager->createGroup($id, $parent_id)) {
 			return new DataResponse(
 				array(
 					'groupname' => $id

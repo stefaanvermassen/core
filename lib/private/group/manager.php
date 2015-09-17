@@ -168,7 +168,7 @@ class Manager extends PublicEmitter implements IGroupManager {
 	 * @param string $gid
 	 * @return \OC\Group\Group
 	 */
-	public function createGroup($gid) {
+	public function createGroup($gid, $parent_gid=-1) {
 		if ($gid === '' || is_null($gid)) {
 			return false;
 		} else if ($group = $this->get($gid)) {
@@ -177,7 +177,7 @@ class Manager extends PublicEmitter implements IGroupManager {
 			$this->emit('\OC\Group', 'preCreate', array($gid));
 			foreach ($this->backends as $backend) {
 				if ($backend->implementsActions(\OC_Group_Backend::CREATE_GROUP)) {
-					$backend->createGroup($gid);
+					$backend->createGroup($gid, $parent_gid);
 					$group = $this->getGroupObject($gid);
 					$this->emit('\OC\Group', 'postCreate', array($group));
 					return $group;
@@ -186,6 +186,8 @@ class Manager extends PublicEmitter implements IGroupManager {
 			return null;
 		}
 	}
+
+	
 
 	/**
 	 * @param string $search
